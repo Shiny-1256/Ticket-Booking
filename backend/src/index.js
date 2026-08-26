@@ -72,8 +72,6 @@ io.on('connection', (socket) => {
 startTtlWorker(io, 5000);
 
 const PORT = process.env.PORT || 5000;
-server.listen(PORT, () => {
-  console.log(`====================================================`);
-  console.log(`🚀 CinePass Ticket Booking Server running on port ${PORT}`);
-  console.log(`====================================================`);
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
