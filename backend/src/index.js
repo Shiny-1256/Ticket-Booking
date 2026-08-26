@@ -22,7 +22,7 @@ initDatabase();
 
 const app = express();
 const server = http.createServer(app);
-const FRONTEND_URL = 'https://ticket-booking-2-4nnr.onrender.com';
+const FRONTEND_URL =  process.env.FRONTEND_URL || 'http://localhost:5173';
 
 const io = new Server(server, {
   cors: {
@@ -73,6 +73,6 @@ io.on('connection', (socket) => {
 startTtlWorker(io, 5000);
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+app.listen(PORT,'0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
 });
