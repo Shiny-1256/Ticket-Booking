@@ -1,6 +1,7 @@
 import { io } from 'socket.io-client';
 
-const API_BASE = '/api';
+const API_URL = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
+const API_BASE = `${API_URL}/api`;
 
 export function getAuthToken() {
   return localStorage.getItem('cinepass_token');
@@ -44,7 +45,7 @@ let socket = null;
 
 export function getSocket() {
   if (!socket) {
-    socket = io('/', {
+    socket = io(API_URL || '/', {
       transports: ['websocket', 'polling']
     });
   }

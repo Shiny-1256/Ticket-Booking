@@ -22,17 +22,18 @@ initDatabase();
 
 const app = express();
 const server = http.createServer(app);
+const FRONTEND_URL = 'https://ticket-booking-2-4nnr.onrender.com';
 
 const io = new Server(server, {
   cors: {
-    origin: '*',
+    origin: FRONTEND_URL,
     methods: ['GET', 'POST', 'PATCH', 'DELETE']
   }
 });
 
 app.set('io', io);
 
-app.use(cors());
+app.use(cors({ origin: FRONTEND_URL }));
 app.use(express.json());
 
 // API Routes
